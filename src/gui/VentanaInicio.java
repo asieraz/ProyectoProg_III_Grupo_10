@@ -98,7 +98,7 @@ public class VentanaInicio extends JFrame{
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
-                ImageIcon fondo = new ImageIcon("resources/images/recursos/fondo.jpg"); // Ruta de tu imagen
+                ImageIcon fondo = new ImageIcon("resources/img/fondo.jpg"); // Ruta de tu imagen
                 g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -138,7 +138,7 @@ public class VentanaInicio extends JFrame{
         
      // Etiqueta para el nombre de usuario
         JLabel nombre = new JLabel("Correo:");
-        nombre.setForeground(Color.WHITE); // Color del texto
+        nombre.setForeground(Color.black); // Color del texto
         nombre.setBounds(30, 50, 80, 25); // Posición y tamaño del componente
         mainPanel.add(nombre);
         // Campo de texto para el nombre de usuario
@@ -147,7 +147,7 @@ public class VentanaInicio extends JFrame{
         mainPanel.add(txt1);
         // Etiqueta para la contraseña
         JLabel contraseña = new JLabel("Contraseña:");
-        contraseña.setForeground(Color.WHITE); // Color del texto
+        contraseña.setForeground(Color.black); // Color del texto
         contraseña.setBounds(30, 100, 80, 25); // Posición y tamaño del componente
         mainPanel.add(contraseña);
         // Campo de texto para la contraseña
