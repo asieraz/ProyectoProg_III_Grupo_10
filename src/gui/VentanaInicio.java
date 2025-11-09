@@ -156,7 +156,7 @@ public class VentanaInicio extends JFrame{
         mainPanel.add(txt2);
 
 
-        ImageIcon foto1 = new ImageIcon("resources/images/recursos/fotover.png");
+        ImageIcon foto1 = new ImageIcon("resources/img/fotover.png");
         JButton ocultar = new JButton(foto1);
         ocultar.setBounds(210, 100, 120, 30); // Posición y tamaño del componente
 
@@ -252,14 +252,14 @@ public class VentanaInicio extends JFrame{
 				if(txt2.echoCharIsSet()) {
 					//Con este codigo pasamos de * a lo que ha escrito el usuario para que sepa la contraseña
 					 txt2.setEchoChar((char) 0);
-					 ImageIcon foto1 = new ImageIcon("resources/images/recursos/fotnover.png");
+					 ImageIcon foto1 = new ImageIcon("resources/img/fotnover.png");
 					 ocultar.setIcon(foto1);
 					
 				}else {
 					//Y aqui al reves 
 					txt2.setEchoChar(valor);
 					
-					ImageIcon foto2 = new ImageIcon("resources/images/recursos/fotover.png");
+					ImageIcon foto2 = new ImageIcon("resources/img/fotover.png");
 					ocultar.setIcon(foto2);
 				}
 

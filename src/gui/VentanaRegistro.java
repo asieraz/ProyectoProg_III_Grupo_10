@@ -36,7 +36,7 @@ public class VentanaRegistro extends JFrame{
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon fondo = new ImageIcon("resources/images/recursos/fondo.jpg"); // Ruta de tu imagen
+                ImageIcon fondo = new ImageIcon("resources/img/fondo.jpg"); // Ruta de tu imagen
                 g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -74,7 +74,7 @@ public class VentanaRegistro extends JFrame{
     
         JLabel usuario = new JLabel("Nombre:");
         usuario.setBounds(30, 10 , 80, 20);
-        usuario.setForeground(Color.WHITE);
+        usuario.setForeground(Color.black);
         mainPanel.add(usuario);
         
         JTextField txt3 = new JTextField(16);
@@ -82,7 +82,7 @@ public class VentanaRegistro extends JFrame{
      	mainPanel.add(txt3);
         
         JLabel apellidos = new JLabel("Apellidos:");
-        apellidos.setForeground(Color.white);
+        apellidos.setForeground(Color.black);
         apellidos.setBounds(30, 60, 80, 20);
     	mainPanel.add(apellidos);
     	
@@ -91,7 +91,7 @@ public class VentanaRegistro extends JFrame{
     	mainPanel.add(txt4);
         
         JLabel edad = new JLabel("Edad:");
-        edad.setForeground(Color.WHITE);
+        edad.setForeground(Color.black);
         edad.setBounds(30, 110, 80, 20);
      	mainPanel.add(edad);
      	
@@ -101,7 +101,7 @@ public class VentanaRegistro extends JFrame{
         
      	  
         JLabel nombre = new JLabel("Correo:");
-        nombre.setForeground(Color.WHITE);
+        nombre.setForeground(Color.black);
         nombre.setBounds(30, 160, 80, 20);
         mainPanel.add(nombre);
         
@@ -110,7 +110,7 @@ public class VentanaRegistro extends JFrame{
      	mainPanel.add(txt1);
         
         JLabel contraseña = new JLabel("Contraseña:");
-        contraseña.setForeground(Color.WHITE);
+        contraseña.setForeground(Color.black);
         contraseña.setBounds(30, 210, 80, 20);
         mainPanel.add(contraseña);
         
@@ -145,15 +145,6 @@ public class VentanaRegistro extends JFrame{
     
     	
     	//jpanel.setLayout(new GridLayout(6,6,10,10));
-    	
-    	
-    	// Añado logo de aisia.
-	   	ImageIcon aisiactimg = new ImageIcon("resources/images/aisia/aisiact.png");
-	   	Image imagenEscalada = aisiactimg.getImage().getScaledInstance(200, 110, java.awt.Image.SCALE_SMOOTH);
-	   	ImageIcon aisiactimgEscalado = new ImageIcon(imagenEscalada);
-		JLabel aisiact = new JLabel(aisiactimgEscalado);
-		aisiact.setBounds(-15, 210, aisiactimg.getIconWidth(), aisiactimg.getIconHeight());
-		mainPanel.add(aisiact);
     	
 		//Crea una separacion entre panel dde arriba y el central 
 		
@@ -264,14 +255,14 @@ public class VentanaRegistro extends JFrame{
 						//Con este codigo pasamos de * a lo que ha escrito el usuario para que sepa la contraseña
 						 txt2.setEchoChar((char)0);
 		
-						 ImageIcon foto1 = new ImageIcon("resources/images/recursos/fotnover.png");
+						 ImageIcon foto1 = new ImageIcon("resources/img/fotnover.png");
 						 ocultar.setIcon(foto1);
 
 					}else {
 						//Y aqui al reves 
 						txt2.setEchoChar(valor);
 			
-						ImageIcon foto2 = new ImageIcon("resources/images/recursos/fotover.png");
+						ImageIcon foto2 = new ImageIcon("resources/img/fotover.png");
 						ocultar.setIcon(foto2);
 					}
 
