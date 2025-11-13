@@ -13,7 +13,7 @@ import domain.Producto;
 public class CargarDatos {
 	
 	public static ArrayList<Producto> cargarProductos() {
-		String rutaArchivo = "../resources/data/productos.csv";
+		String rutaArchivo = "resources/data/productos.csv";
 	    ArrayList<Producto> productos = new ArrayList<>();
 
 	    try {
@@ -49,7 +49,7 @@ public class CargarDatos {
 	
 	
 	public static ArrayList<Departamento> cargarDepartamentos() {
-		String rutaArchivo = "../resources/data/departamentos.csv";
+		String rutaArchivo = "resources/data/departamentos.csv";
 	    ArrayList<Departamento> departamentos = new ArrayList<>();
 
 	    try {
@@ -60,7 +60,7 @@ public class CargarDatos {
 	        String linea;
 	        while ((linea = br.readLine()) != null) {
 	            String[] partes = linea.split(",");
-	            if (partes.length == 5) {
+	            if (partes.length == 3) {
 	                int id = Integer.parseInt(partes[0].trim());
 	                String nombre = partes[1].trim();
 	                int NSSJefe = Integer.parseInt(partes[2].trim());

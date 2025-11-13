@@ -1,39 +1,34 @@
 package gui;
 
-
 import java.awt.Color;
 import java.awt.Font;
-
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
 
-import domain.Producto;
+import domain.Departamento;
 
-public class VentanaProductos extends JFrame {
+public class VentanaDepartamento extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Producto> productos;
+	private ArrayList<Departamento> departamentos;
 	
 	
-	public VentanaProductos(ArrayList<Producto> productos) {
-	    this.productos = productos;
+	public VentanaDepartamento(ArrayList<Departamento> departamentos) {
+	    this.departamentos = departamentos;
 	    
-	    ModeloTablaProductos modeloProd = new ModeloTablaProductos(this.productos);
-	    JTable tablaProductos = new JTable(modeloProd);
+	    ModeloTablaDepartamento modeloDep = new ModeloTablaDepartamento(this.departamentos);
+	    JTable tablaDepartamento = new JTable(modeloDep);
 
-	    tablaProductos.setShowGrid(false);
-	    tablaProductos.getTableHeader().setReorderingAllowed(false);
-	    tablaProductos.setRowHeight(30);
+	    tablaDepartamento.setShowGrid(false);
+	    tablaDepartamento.getTableHeader().setReorderingAllowed(false);
+	    tablaDepartamento.setRowHeight(30);
 
-	    tablaProductos.getTableHeader().setDefaultRenderer((table, value, isSelected, hasFocus, row, column) -> {
+	    tablaDepartamento.getTableHeader().setDefaultRenderer((table, value, isSelected, hasFocus, row, column) -> {
 	        JLabel result = new JLabel(value.toString());
 	        result.setHorizontalAlignment(SwingConstants.CENTER);
 	        result.setFont(new Font("Arial", Font.BOLD, 16));
@@ -42,21 +37,18 @@ public class VentanaProductos extends JFrame {
 	        return result;
 	    });
 
-	    tablaProductos.getColumnModel().getColumn(0).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
-	        JButton button = new JButton(value.toString());
+	    tablaDepartamento.setDefaultRenderer(Object.class, (table, value, isSelected, hasFocus, row, column) -> {
+	    	JButton button = new JButton(value.toString());
 	        button.setFont(new Font("Arial", Font.PLAIN, 14));      
 	        button.setHorizontalAlignment(SwingConstants.LEFT);     
 	        button.setContentAreaFilled(false);                                          
 	        return button;
 	    });
 	    
-	
-	    
-	    
 
-	    add(new javax.swing.JScrollPane(tablaProductos));
+	    add(new javax.swing.JScrollPane(tablaDepartamento));
 
-	    setTitle("Lista de Productos");
+	    setTitle("Lista de Departamentos");
 	    setSize(600, 400);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setLocationRelativeTo(null);
@@ -64,18 +56,13 @@ public class VentanaProductos extends JFrame {
 	
 	
 	
-	
 
 	public static void main(String[] args) {
-		ArrayList<Producto> productos = BD.CargarDatos.cargarProductos();
+		ArrayList<Departamento> departamentos = BD.CargarDatos.cargarDepartamentos();
 		SwingUtilities.invokeLater(() -> {
-        	VentanaProductos ventana = new VentanaProductos(productos);
+			VentanaDepartamento ventana = new VentanaDepartamento(departamentos);
             ventana.setVisible(true);
         });
 	}
-		
-
-	
-	
 	
 }

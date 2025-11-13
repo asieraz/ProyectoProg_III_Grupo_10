@@ -2,48 +2,43 @@ package gui;
 
 import java.util.ArrayList;
 
-
 import javax.swing.table.AbstractTableModel;
 
-import domain.Producto;
+import domain.Departamento;
 
-public class ModeloTablaProductos extends AbstractTableModel {
+
+public class ModeloTablaDepartamento extends AbstractTableModel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Producto> productos;
+	private ArrayList<Departamento> departamentos;
 	
-	public ModeloTablaProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
+	public ModeloTablaDepartamento(ArrayList<Departamento> departamentos) {
+        this.departamentos = departamentos;
     }
 
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return productos.size();
+		return departamentos.size();
 	}
 
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 1;
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		if (columnIndex == 0) {
-			return productos.get(rowIndex).getNombreProd();	
-		}else {
-			return productos.get(rowIndex).getPrecio();
-		}
+			return departamentos.get(rowIndex).getNombreDepartamento();	
 	}
 
 	public String getColumnName(int column) {
 	    switch (column) {
-	        case 0: return "Producto";
-	        case 1: return "Precio";
+	        case 0: return "Departamento";
 	        default: return "";
 	    }
 	}
