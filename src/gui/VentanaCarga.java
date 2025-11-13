@@ -10,7 +10,8 @@ public class VentanaCarga extends JFrame {
     private static final long serialVersionUID = 1L;
     private int cont = 0;
     private JProgressBar jProgressBar;
-    private JLabel jLabel;
+    @SuppressWarnings("unused")
+	private JLabel jLabel;
 
     public VentanaCarga() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

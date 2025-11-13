@@ -2,33 +2,28 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.Random;
+
 import java.util.Scanner;
-import java.util.Vector;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -37,18 +32,24 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
+
 import javax.swing.table.TableRowSorter;
 
 import domain.Usuario;
 public class VentanaTablaUsuarios extends JFrame {
-	 private  DefaultTableModel model;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
 	
     private static  JTable tabla;
     protected JFrame frame;
     protected Usuario perso;
     protected HashMap<String, String> mapa;
     private int filaMouseOver = -1;
+	@SuppressWarnings("unused")
 	private int callMouseOver = -1;
 	private TableRowSorter<DefaultTableModel> sorter;
 	private JTextField searchField;
@@ -281,6 +282,7 @@ public class VentanaTablaUsuarios extends JFrame {
 	           
 	    }
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		String[] vacio = null;
 		 VentanaTablaUsuarios ventana = new VentanaTablaUsuarios(vacio);
