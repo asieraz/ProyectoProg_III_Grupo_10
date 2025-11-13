@@ -1,12 +1,12 @@
 package main;
 
+import gui.VentanaCarga; // 👈 importa tu clase VentanaCarga
+
 public class Main {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		System.out.print("Toca laburar");
-
-	}
+    public static void main(String[] args) {
+  
+        new VentanaCarga();
+    }
 
 }
