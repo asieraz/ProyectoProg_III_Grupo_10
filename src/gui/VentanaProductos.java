@@ -24,49 +24,42 @@ public class VentanaProductos extends JFrame {
 	
 	
 	public VentanaProductos(ArrayList<Producto> productos) {
-		this.productos = productos;
-		
-		ModeloTablaProductos modeloProd = new ModeloTablaProductos(this.productos);
-		
-		
-		JTable tablaProductos = new JTable(modeloProd);
-		
-		tablaProductos.setShowGrid(false);
-		
-		tablaProductos.getTableHeader().setReorderingAllowed(false);
-		
-		tablaProductos.setRowHeight(64);
-		
-		tablaProductos.getTableHeader().setDefaultRenderer((table, value, isSelected, hasFocus, row, column) -> {
-			JLabel result = new JLabel(value.toString());
-			
-			result.setHorizontalAlignment(SwingConstants.CENTER);
-			result.setFont(new Font("Arial", Font.BOLD, 18));
-			result.setBackground(Color.WHITE);
-			result.setOpaque(true);
-			
-			return result;
-		});	
-		
-		
-		TableCellRenderer cellRenderer = ((table, value, isSelected, hasFocus, row, column) -> {
-			JLabel result = new JLabel();
-			result.setHorizontalAlignment(SwingConstants.CENTER);
+	    this.productos = productos;
+	    
+	    // Crear el modelo y la tabla
+	    ModeloTablaProductos modeloProd = new ModeloTablaProductos(this.productos);
+	    JTable tablaProductos = new JTable(modeloProd);
 
-			// Configuración del renderizado para la primera columna (Horas)
-			if (column == 0) {
-				result.setFont(new Font("Arial", Font.BOLD, 18));
-				result.setText((String) value);
-			
-			}else {
-				result.setFont(new Font("Arial", Font.BOLD, 18));
-				result.setText((String) value);
-			}
-			return result;
-		});		
-		
-		
-		tablaProductos.setDefaultRenderer(Object.class, cellRenderer);
+	    // Configurar la tabla
+	    tablaProductos.setShowGrid(false);
+	    tablaProductos.getTableHeader().setReorderingAllowed(false);
+	    tablaProductos.setRowHeight(30);
+
+	    // Cabecera personalizada
+	    tablaProductos.getTableHeader().setDefaultRenderer((table, value, isSelected, hasFocus, row, column) -> {
+	        JLabel result = new JLabel(value.toString());
+	        result.setHorizontalAlignment(SwingConstants.CENTER);
+	        result.setFont(new Font("Arial", Font.BOLD, 16));
+	        result.setBackground(Color.LIGHT_GRAY);
+	        result.setOpaque(true);
+	        return result;
+	    });
+
+	    // Renderizado de celdas
+	    tablaProductos.setDefaultRenderer(Object.class, (table, value, isSelected, hasFocus, row, column) -> {
+	        JLabel result = new JLabel(value.toString(), SwingConstants.CENTER);
+	        result.setFont(new Font("Arial", Font.PLAIN, 14));
+	        return result;
+	    });
+
+	    // ✅ Agregar la tabla dentro de un JScrollPane
+	    add(new javax.swing.JScrollPane(tablaProductos));
+
+	    // ✅ Configurar la ventana
+	    setTitle("Lista de Productos");
+	    setSize(600, 400);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setLocationRelativeTo(null); // Centrar en pantalla
 	}
 	
 	
