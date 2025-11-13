@@ -36,15 +36,16 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
 import domain.Usuario;
+
+
 public class VentanaTablaUsuarios extends JFrame {
-	 /**
+
+
+    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	
-	
-    private static  JTable tabla;
+	private static  JTable tabla;
     protected JFrame frame;
     protected Usuario perso;
     protected HashMap<String, String> mapa;
@@ -54,47 +55,48 @@ public class VentanaTablaUsuarios extends JFrame {
 	private TableRowSorter<DefaultTableModel> sorter;
 	private JTextField searchField;
 
+	
 
 
-    
+
 	public VentanaTablaUsuarios(String [] datosUser) {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Programa de de tabla de nombre");
 		setSize(640,640);
-		
-		
-		
-		
-		        
+
+
+
+
+
 		  String[] colubnas = {"Nombre", "Apellido", "Edad","Correo", "Contraseña"};
 		  // Agregar algunas columnas a las tablas
 		// Crear modelos de tabla
-	    
-		 
+
+
 		  DefaultTableModel model = new DefaultTableModel(colubnas, 0);
 	        cargarDatosCSV("resources/data/personas.csv", model);
-	        
+
 	        if (datosUser != null && datosUser.length == colubnas.length) {
 	            model.addRow(datosUser);
 	        }
-	        
-	        
+
+
 	        // Inicializar la tabla
 	        tabla = new JTable(model);
 
 	     // Activar ordenamiento al hacer clic en los encabezados
-	       
+
 	        sorter = new TableRowSorter<>(model);
 	        tabla.setRowSorter(sorter);
 
 	        // Listener para detección del mouse
-	   
+
 	        // Crear un campo de texto para la búsqueda
 	        searchField = new JTextField(20);
 	        searchField.setToolTipText("Buscar por nombre...");
 	        searchField.addKeyListener(new KeyAdapter() {
-	       
+
 	            public void keyReleased(KeyEvent e) {
 	                String query = searchField.getText().toLowerCase();
 
@@ -130,8 +132,8 @@ public class VentanaTablaUsuarios extends JFrame {
 	                tabla.repaint();
 	            }
 	        });
-	        
-	        
+
+
 	     // Ocultar contraseñas
 	        tabla.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
 	            @Override
@@ -216,11 +218,11 @@ public class VentanaTablaUsuarios extends JFrame {
 	                tabla.repaint();
 	            }
 	        });  
-	       
-	        
+
+
 	        guardarEnArchivo(model);
-	      	
-	      
+
+
 
 
 
@@ -230,41 +232,41 @@ public class VentanaTablaUsuarios extends JFrame {
 
 
 		setVisible(true);
-		
-	    		
-		
+
+
+
 	}
-	
-	
-	
+
+
+
 	public void cargarDatosCSV(String n, DefaultTableModel datos){
     	File f = new File(n);
     	try {
 			Scanner sc = new Scanner(f);
 			while(sc.hasNextLine()) {
-			
+
 				String linea = sc.nextLine();
-				
+
 					String[] campos =  linea.split(";");
-					
+
 					datos.addRow(campos);
-					
+
 					HashMap<String,String> mapa = new HashMap<String, String>();
-	
+
 						mapa.put(campos[0], campos[1]  +campos[2] + campos[3] + campos[4]);
-				
-					
-					
+
+
+
 				}			
 			sc.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
-    	
+
+
     }	
-		
+
 	 public void guardarEnArchivo(DefaultTableModel model) {
 	        try (PrintWriter pw = new PrintWriter(new FileWriter("resources/data/personas.csv",false))) {
 	            for (int i = 0; i < model.getRowCount(); i++) {
@@ -279,14 +281,14 @@ public class VentanaTablaUsuarios extends JFrame {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-	           
+
 	    }
-	
+
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		String[] vacio = null;
 		 VentanaTablaUsuarios ventana = new VentanaTablaUsuarios(vacio);
-		 
+
     }
-	   
+
 }
