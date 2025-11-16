@@ -17,11 +17,9 @@ import java.util.Objects;
 
 public class VentanaAbstracta extends JFrame{
 	
-	 /**
-     * UID serial
-     */
-	private static final long serialVersionUID = 14165416645L;
+	private static final long serialVersionUID = -7773456552240162440L;
 	
+
 	/*
      * Configura las propiedades al crear la ventana.
      * @param frame:	El JFrame a configurar
@@ -44,7 +42,7 @@ public class VentanaAbstracta extends JFrame{
 	        });
 
 	    this.setTitle("Uni-Air");
-	    ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/icon.png")));
+	    ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img/icon.png")));
 	    this.setIconImage(icon.getImage());
 	    this.addKeyListener(new KeyAdapter() {
 	    	@Override

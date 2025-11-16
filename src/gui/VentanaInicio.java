@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 
 public class VentanaInicio extends JFrame{
@@ -280,9 +281,11 @@ public class VentanaInicio extends JFrame{
 				String Correo = txt1.getText();
 				String contra = new String(txt2.getPassword());
 				
-				
+					// Implementacion futura hará distinción entre usuarios (clientes) y administradores
 					if(mapa.containsKey(Correo) && mapa.get(Correo).equals(contra)) {
-						dispose();
+						JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente como usuario");
+						SwingUtilities.invokeLater(VentanaMenuPrincipal::new);
+						//dispose();
 						
 						//Ventana pruba hasta que creemos la principal
 					
