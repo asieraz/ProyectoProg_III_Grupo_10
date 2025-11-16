@@ -63,7 +63,12 @@ public class VentanaMenuPrincipal extends JFrame{
         JLabel titulo = new JLabel("SuperMarket", new ImageIcon("resources/img/logoSuper.png"), SwingConstants.CENTER);
         titulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
         titulo.setBorder(new EmptyBorder(20, 0, 20, 0));
+        // Para poner el titulo debajo del logo
+        titulo.setVerticalTextPosition(JLabel.BOTTOM);
+        titulo.setHorizontalTextPosition(JLabel.CENTER);
+        
         add(titulo, BorderLayout.NORTH);
+        
 
         // Panel central profesional
         JPanel panel = new JPanel(new GridLayout(2, 3, 20, 20));
