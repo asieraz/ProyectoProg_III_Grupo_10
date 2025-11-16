@@ -65,6 +65,7 @@ public class VentanaTablaUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Programa de de tabla de nombre");
 		setSize(640,640);
+		setLocationRelativeTo(null);
 
 
 
