@@ -37,8 +37,8 @@ public class VentanaMenuPrincipal extends JFrame{
         // Barra de menú simple
         JMenuBar menuBar = new JMenuBar();
 
-        JMenu menuArchivo = new JMenu("Archivo");
-        JMenuItem salir = new JMenuItem("Salir");
+        JMenu menuArchivo = new JMenu("Cerrar");
+        JMenuItem salir = new JMenuItem("Cerrar aplicacion");
         
         salir.addActionListener(e -> cerrarAplicacion());
 
