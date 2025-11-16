@@ -1,6 +1,7 @@
 package gui;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -49,12 +50,20 @@ public class VentanaProductos extends JFrame {
 	        button.setContentAreaFilled(false);                                          
 	        return button;
 	    });
-	    
-	
-	    
-	    
 
-	    add(new javax.swing.JScrollPane(tablaProductos));
+	    add(new javax.swing.JScrollPane(tablaProductos), BorderLayout.CENTER);
+	    
+	    // boton de vuelta al menu principal
+	    JButton btnVolver = new JButton("Volver al Menú Principal");
+        btnVolver.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        btnVolver.addActionListener(e -> {
+            VentanaMenuPrincipal menu = new VentanaMenuPrincipal();
+            menu.setVisible(true);
+            dispose();
+        });
+        
+        add(btnVolver, BorderLayout.SOUTH);
 
 	    setTitle("Lista de Productos");
 	    setSize(600, 400);

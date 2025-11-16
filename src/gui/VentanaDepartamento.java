@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -46,7 +47,19 @@ public class VentanaDepartamento extends JFrame {
 	    });
 	    
 
-	    add(new javax.swing.JScrollPane(tablaDepartamento));
+	    add(new javax.swing.JScrollPane(tablaDepartamento), BorderLayout.CENTER);
+	    
+	    // boton de vuelta al menu principal
+	    JButton btnVolver = new JButton("Volver al Menú Principal");
+        btnVolver.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        btnVolver.addActionListener(e -> {
+            VentanaMenuPrincipal menu = new VentanaMenuPrincipal();
+            menu.setVisible(true);
+            dispose();
+        });
+        
+        add(btnVolver, BorderLayout.SOUTH);
 
 	    setTitle("Lista de Departamentos");
 	    setSize(600, 400);

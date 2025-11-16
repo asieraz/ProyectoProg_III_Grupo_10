@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -85,7 +86,7 @@ public class VentanaTablaUsuarios extends JFrame {
 	        // Inicializar la tabla
 	        tabla = new JTable(model);
 
-	     // Activar ordenamiento al hacer clic en los encabezados
+	        // Activar ordenamiento al hacer clic en los encabezados
 
 	        sorter = new TableRowSorter<>(model);
 	        tabla.setRowSorter(sorter);
@@ -121,6 +122,17 @@ public class VentanaTablaUsuarios extends JFrame {
 	        add(searchPanel, BorderLayout.NORTH);
 	        add(scroll, BorderLayout.CENTER);  // Aquí se agrega el JScrollPane a la ventana
 
+	        // boton de vuelta al menu principal
+		    JButton btnVolver = new JButton("Volver al Menú Principal");
+	        btnVolver.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+	        btnVolver.addActionListener(e -> {
+	            VentanaMenuPrincipal menu = new VentanaMenuPrincipal();
+	            menu.setVisible(true);
+	            dispose();
+	        });
+	        
+	        add(btnVolver, BorderLayout.SOUTH);
 
 
 
