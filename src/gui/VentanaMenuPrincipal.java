@@ -147,7 +147,17 @@ public class VentanaMenuPrincipal extends JFrame{
         
         
         btnProveedores.addActionListener(e -> {
-        	ArrayList<Proveedor> proveedores = BD.CargarDatos.cargarProveedores();    	
+        	//ArrayList<Proveedor> proveedores = BD.CargarDatos.cargarProveedores();
+        	ArrayList<Proveedor> proveedores = new ArrayList<>();
+            // Ejemplo de datos
+            proveedores.add(new Proveedor(1, "Álvaro Ma.", 28001, "123498fg"));
+            proveedores.add(new Proveedor(2, "Peter Mu.", 28002, "abcd27"));
+            proveedores.add(new Proveedor(3, "Lucas Landa", 28002, "QWERT87"));
+            proveedores.add(new Proveedor(4, "Luis O.", 28001, "abcdefghijk"));
+            proveedores.add(new Proveedor(5, "Alberto D.", 28002, "abcdefg"));
+            proveedores.add(new Proveedor(6, "Ana Perez", 28003, "abcd3477"));
+            proveedores.add(new Proveedor(7, "Ana María", 28003, "abcd1235"));
+            proveedores.add(new Proveedor(8, "Lucas Prieto", 28004, "abddc33"));
     		new VentanaProveedores(proveedores).setVisible(true);       
         	dispose();
         });
