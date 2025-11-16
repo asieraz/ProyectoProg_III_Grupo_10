@@ -287,7 +287,7 @@ public class VentanaTablaUsuarios extends JFrame {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		String[] vacio = null;
-		 VentanaTablaUsuarios ventana = new VentanaTablaUsuarios(vacio);
+		VentanaTablaUsuarios ventana = new VentanaTablaUsuarios(vacio);
 
     }
 
