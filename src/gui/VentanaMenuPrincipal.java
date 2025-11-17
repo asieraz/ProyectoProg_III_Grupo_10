@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import domain.Departamento;
 import domain.Producto;
+import domain.Proveedor;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ public class VentanaMenuPrincipal extends JFrame{
         // Barra de menú simple
         JMenuBar menuBar = new JMenuBar();
 
-        JMenu menuArchivo = new JMenu("Archivo");
-        JMenuItem salir = new JMenuItem("Salir");
+        JMenu menuArchivo = new JMenu("Cerrar");
+        JMenuItem salir = new JMenuItem("Cerrar aplicacion");
         
         salir.addActionListener(e -> cerrarAplicacion());
 
@@ -107,12 +108,12 @@ public class VentanaMenuPrincipal extends JFrame{
                 new EmptyBorder(10, 10, 10, 10)
         ));
         
-        JButton btnSalir = new JButton("Salir");
-        btnSalir.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        btnSalir.setBackground(COLOR_BOTON);
-        btnSalir.setForeground(COLOR_TEXTO_BOTON);
-        btnSalir.setFocusPainted(false);
-        btnSalir.setBorder(BorderFactory.createCompoundBorder(
+        JButton btnProveedores = new JButton("Proveedores");
+        btnProveedores.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        btnProveedores.setBackground(COLOR_BOTON);
+        btnProveedores.setForeground(COLOR_TEXTO_BOTON);
+        btnProveedores.setFocusPainted(false);
+        btnProveedores.setBorder(BorderFactory.createCompoundBorder(
         		BorderFactory.createLineBorder(COLOR_PRIMARIO, 2),
                 new EmptyBorder(10, 10, 10, 10)
         ));
@@ -120,7 +121,7 @@ public class VentanaMenuPrincipal extends JFrame{
         panel.add(btnProductos);
         panel.add(btnUsuarios);
         panel.add(btnDepartamento);
-        panel.add(btnSalir);
+        panel.add(btnProveedores);
 
         add(panel, BorderLayout.CENTER);
         
@@ -145,16 +146,20 @@ public class VentanaMenuPrincipal extends JFrame{
         
         
         
-        btnSalir.addActionListener(e -> {
-            int confirm = JOptionPane.showConfirmDialog(
-                    this,
-                    "¿Desea salir del sistema?",
-                    "Confirmar salida",
-                    JOptionPane.YES_NO_OPTION
-            );
-            if (confirm == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
+        btnProveedores.addActionListener(e -> {
+        	//ArrayList<Proveedor> proveedores = BD.CargarDatos.cargarProveedores();
+        	ArrayList<Proveedor> proveedores = new ArrayList<>();
+            // Ejemplo de datos
+            proveedores.add(new Proveedor(1, "Álvaro Ma.", 28001, "123498fg"));
+            proveedores.add(new Proveedor(2, "Peter Mu.", 28002, "abcd27"));
+            proveedores.add(new Proveedor(3, "Lucas Landa", 28002, "QWERT87"));
+            proveedores.add(new Proveedor(4, "Luis O.", 28001, "abcdefghijk"));
+            proveedores.add(new Proveedor(5, "Alberto D.", 28002, "abcdefg"));
+            proveedores.add(new Proveedor(6, "Ana Perez", 28003, "abcd3477"));
+            proveedores.add(new Proveedor(7, "Ana María", 28003, "abcd1235"));
+            proveedores.add(new Proveedor(8, "Lucas Prieto", 28004, "abddc33"));
+    		new VentanaProveedores(proveedores).setVisible(true);       
+        	dispose();
         });
         
         
