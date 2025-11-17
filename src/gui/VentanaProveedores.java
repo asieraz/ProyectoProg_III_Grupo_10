@@ -146,4 +146,5 @@ public class VentanaProveedores extends JFrame {
 
         SwingUtilities.invokeLater(() -> new VentanaProveedores(proveedores));
     }
+    //aaaa
 }
