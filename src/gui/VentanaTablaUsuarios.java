@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -64,6 +65,7 @@ public class VentanaTablaUsuarios extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Programa de de tabla de nombre");
 		setSize(640,640);
+		setLocationRelativeTo(null);
 
 
 
@@ -85,7 +87,7 @@ public class VentanaTablaUsuarios extends JFrame {
 	        // Inicializar la tabla
 	        tabla = new JTable(model);
 
-	     // Activar ordenamiento al hacer clic en los encabezados
+	        // Activar ordenamiento al hacer clic en los encabezados
 
 	        sorter = new TableRowSorter<>(model);
 	        tabla.setRowSorter(sorter);
@@ -121,6 +123,17 @@ public class VentanaTablaUsuarios extends JFrame {
 	        add(searchPanel, BorderLayout.NORTH);
 	        add(scroll, BorderLayout.CENTER);  // Aquí se agrega el JScrollPane a la ventana
 
+	        // boton de vuelta al menu principal
+		    JButton btnVolver = new JButton("Volver al Menú Principal");
+	        btnVolver.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+	        btnVolver.addActionListener(e -> {
+	            VentanaMenuPrincipal menu = new VentanaMenuPrincipal();
+	            menu.setVisible(true);
+	            dispose();
+	        });
+	        
+	        add(btnVolver, BorderLayout.SOUTH);
 
 
 
@@ -287,7 +300,7 @@ public class VentanaTablaUsuarios extends JFrame {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		String[] vacio = null;
-		 VentanaTablaUsuarios ventana = new VentanaTablaUsuarios(vacio);
+		VentanaTablaUsuarios ventana = new VentanaTablaUsuarios(vacio);
 
     }
 
