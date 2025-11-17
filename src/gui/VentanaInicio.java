@@ -58,7 +58,7 @@ public class VentanaInicio extends JFrame{
 			
 				
 					
-					mapa.put(campos[3], campos[4]);
+					mapa.put(campos[3], campos[4] + "\n");
 					
 					
 					

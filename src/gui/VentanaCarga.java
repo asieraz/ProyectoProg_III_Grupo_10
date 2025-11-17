@@ -1,9 +1,16 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 
 public class VentanaCarga extends JFrame {
 
@@ -12,51 +19,96 @@ public class VentanaCarga extends JFrame {
     private JProgressBar jProgressBar;
     @SuppressWarnings("unused")
 	private JLabel jLabel;
+    protected static HashMap<String, String> mapa = new HashMap<>();
+    
+    
+    public static void cargarDatosCSV(){
+    	File f = new File("resources/data/personas.csv");
+    	try {
+			Scanner sc = new Scanner(f);
+			while(sc.hasNextLine()) {
+				String linea = sc.nextLine();
+				String[] campos =  linea.split(";");
+			
+				
+					
+					mapa.put(campos[3], campos[4]+ "\n");
+					
+					
+					
+				}
+			
+				 	
+			sc.close();
+					
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    }
 
     public VentanaCarga() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Cargar Pantalla");
-        setSize(240, 55);
+        setSize(300, 250);
         setLocationRelativeTo(null); // Centrar la ventana
 
         // Crear y configurar la barra de progreso
+       
+
+        
+        ImageIcon icon = new ImageIcon("resources/img/logoSuper.png");
+        JLabel jImagen = new JLabel(icon, JLabel.CENTER);
+        add(jImagen, BorderLayout.NORTH);
+
+       
+        JLabel jTexto = new JLabel("Cargando...", JLabel.CENTER);
+        add(jTexto, BorderLayout.CENTER);
+
+  
         jProgressBar = new JProgressBar(0, 100);
-        jProgressBar.setValue(cont);
         jProgressBar.setStringPainted(true);
-        add(jProgressBar, BorderLayout.NORTH);
+        jProgressBar.setValue(cont);
+        add(jProgressBar, BorderLayout.SOUTH);
 
         setVisible(true);
 
-
-        // HILO PARA ACTUALIZAR LA BARRA
-       
-        Thread hiloCarga = new Thread(() -> {
+     
+        Thread hilo = new Thread(() -> {
             try {
-                while (cont <= 100) {
-                    jProgressBar.setValue(cont);
-                    Thread.sleep(25); // velocidad de carga
-                    cont++;
+                for (int i = 0; i <= 100; i++) {
 
-                    if (cont > 100) {
-                        break;
-                    }
+                    int value = i;
+
+                    // Actualizaciones de UI siempre en Swing EDT
+                    SwingUtilities.invokeLater(() -> {
+                        jProgressBar.setValue(value);
+                    });
+
+                    Thread.sleep(25);
                 }
 
-                // Cuando llega al 100%, abrir VentanaInicio
-                javax.swing.SwingUtilities.invokeLater(() -> {
+                // Abrir siguiente ventana al terminar
+                SwingUtilities.invokeLater(() -> {
                     new VentanaInicio();
                     dispose();
                 });
 
-            } catch (InterruptedException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        hiloCarga.start();
+        hilo.start();
     }
+    
 
     public static void main(String[] args) {
         new VentanaCarga();
+        cargarDatosCSV();
+        System.out.println(mapa);
     }
 }
