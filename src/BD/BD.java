@@ -12,7 +12,8 @@ import java.util.Scanner;
 
 public class BD {
 	
-	 private static final Scanner sc = new Scanner(System.in);
+	 @SuppressWarnings("unused")
+	private static final Scanner sc = new Scanner(System.in);
 
 	    public static void borrarBD(Connection db) {
 	        String sql =
