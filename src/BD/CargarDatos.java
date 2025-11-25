@@ -5,13 +5,51 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import domain.Departamento;
 import domain.Producto;
 import domain.Proveedor;
+import domain.Usuario;
 
 public class CargarDatos {
+
+
+    
+    public static ArrayList<Usuario> cargarUsuarios(){
+    	String rutaArchivo = "resources/data/usuarios.csv";
+    	ArrayList<Usuario> usuarios = new ArrayList<>();
+    	 try {
+ 	        FileInputStream fis = new FileInputStream(rutaArchivo);
+ 	        InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+ 	        BufferedReader br = new BufferedReader(isr);
+
+ 	        String linea;
+ 	        while ((linea = br.readLine()) != null) {
+ 	            String[] partes = linea.split(",");
+ 	            if (partes.length == 5) {
+ 	                int codigo = Integer.parseInt(partes[0].trim());
+ 	                String username = partes[1].trim();
+ 	                LocalDate creacionCuenta = LocalDate.parse(partes[2].trim());
+ 	                String pais = partes[3].trim();
+ 	                String foto = partes[4].trim();
+ 	                String contrasena = partes[5].trim();
+
+ 	                usuarios.add(new Usuario(codigo, username, creacionCuenta, pais, foto, contrasena));
+ 	            }
+ 	            
+ 	        }
+
+ 	        br.close();
+ 	    } catch (IOException e) {
+ 	        System.out.println("Error al leer el archivo: " + e.getMessage());
+ 	    }
+
+ 	    return usuarios;
+    	
+    }
+    
 	
 	public static ArrayList<Producto> cargarProductos() {
 		String rutaArchivo = "resources/data/productos.csv";
