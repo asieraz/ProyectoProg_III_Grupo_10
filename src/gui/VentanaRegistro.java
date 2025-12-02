@@ -225,10 +225,13 @@ public class VentanaRegistro extends JFrame{
 	                    // Crear la ventana de la tabla y pasarle los datos
 	                    if (ventanaTabla == null) {
 	                        ventanaTabla = new VentanaTablaUsuarios(datosUsuario);
+	                        ventanaTabla.dispose();
+	                        
 	                    }
 	                   
-	                    // Mostrar la ventana de la tabla
-	                    ventanaTabla.setVisible(true);
+	                    VentanaMenuPrincipal ventanaMenuPrincipal = new VentanaMenuPrincipal();
+						// Mostrar la ventana de la tabla
+	                    ventanaMenuPrincipal.setVisible(true);
 	                    // Ocultar la ventana actual de registro
 	                    dispose();
 	                    

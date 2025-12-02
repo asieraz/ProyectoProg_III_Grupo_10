@@ -2,11 +2,14 @@ package gui;
 
 import javax.swing.*;
 
+import domain.Categoria;
 import domain.Departamento;
 import domain.Producto;
 import domain.Proveedor;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
@@ -21,6 +24,8 @@ public class VentanaMenuPrincipal extends JFrame{
     private final Color COLOR_PRIMARIO = new Color(33, 150, 243);
     private final Color COLOR_BOTON = new Color(25, 118, 210);
     private final Color COLOR_TEXTO_BOTON = Color.WHITE;
+
+	protected Categoria raizCategorias;
 
 	public VentanaMenuPrincipal() {
 		
@@ -48,12 +53,17 @@ public class VentanaMenuPrincipal extends JFrame{
 
         JMenu ayuda = new JMenu("Ayuda");
         JMenuItem acerca = new JMenuItem("Acerca del sistema");
-        acerca.addActionListener(e ->
-                JOptionPane.showMessageDialog(this,
-                        "SuperMarket está todavia en una versión de prueba, disculpe por las molestias",
-                        "Acerca",
-                        JOptionPane.INFORMATION_MESSAGE)
-        );
+        acerca.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				VentanaAcercaDelSistema acercaDelSistema = new VentanaAcercaDelSistema();
+				acercaDelSistema.setVisible(true);
+				
+			}
+		});
+    
 
         ayuda.add(acerca);
         menuBar.add(ayuda);
