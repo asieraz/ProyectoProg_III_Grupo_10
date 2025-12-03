@@ -24,7 +24,14 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
+	public Usuario() {
+		
+	}
+	
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 
+	}
 
 	public int getCodigo() {
 		return codigo;

@@ -1,6 +1,6 @@
 package gui;
 
-import javax.swing.*;
+import javax.swing.*; 
 
 import domain.Departamento;
 import domain.Producto;
@@ -9,6 +9,8 @@ import domain.Proveedor;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
+
+import BD.GestorBD;
 
 public class VentanaMenuPrincipal extends JFrame{
 
@@ -127,7 +129,7 @@ public class VentanaMenuPrincipal extends JFrame{
         
         // Conexiones de los botones al resto de ventanas
         btnProductos.addActionListener(e -> {
-        	ArrayList<Producto> productos = BD.CargarDatos.cargarProductos();
+        	ArrayList<Producto> productos = GestorBD.obtenerProductos();
         	new VentanaProductos(productos).setVisible(true);
         	dispose();
         });
@@ -139,7 +141,7 @@ public class VentanaMenuPrincipal extends JFrame{
         });
         
         btnDepartamento.addActionListener(e -> {
-        	ArrayList<Departamento> departamentos = BD.CargarDatos.cargarDepartamentos();    	
+        	ArrayList<Departamento> departamentos = GestorBD.obtenerDepartamentos();    	
     		new VentanaDepartamento(departamentos).setVisible(true);       
         	dispose();
         });

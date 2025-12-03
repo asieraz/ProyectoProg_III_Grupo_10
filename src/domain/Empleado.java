@@ -16,6 +16,9 @@ public class Empleado {
 		this.codSeccion = codSeccion;
 		this.idDepartamento = idDepartamento;
 	}
+	public Empleado() {
+		
+	}
 	public int getNss() {
 		return Nss;
 	}

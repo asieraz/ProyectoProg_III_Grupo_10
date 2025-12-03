@@ -15,6 +15,10 @@ public class Departamento {
 		this.nombreDepartamento = nombreDepartamento;
 		NSSJefe = nSSJefe;
 	}
+	
+	public Departamento() {
+		
+	}
 
 
 	public int getIdDepartamento() {

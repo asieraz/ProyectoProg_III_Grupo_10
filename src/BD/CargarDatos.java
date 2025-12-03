@@ -1,6 +1,6 @@
 package BD;
 
-import java.io.BufferedReader;
+import java.io.BufferedReader; 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,11 +15,15 @@ import domain.Usuario;
 
 public class CargarDatos {
 
-
+	public static void cargar() {
+		cargarUsuarios();
+		cargarProductos();
+		cargarDepartamentos();
+		cargarProveedores();
+	}
     
-    public static ArrayList<Usuario> cargarUsuarios(){
+    public static void cargarUsuarios(){
     	String rutaArchivo = "resources/data/usuarios.csv";
-    	ArrayList<Usuario> usuarios = new ArrayList<>();
     	 try {
  	        FileInputStream fis = new FileInputStream(rutaArchivo);
  	        InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
@@ -36,7 +40,8 @@ public class CargarDatos {
  	                String foto = partes[4].trim();
  	                String contrasena = partes[5].trim();
 
- 	                usuarios.add(new Usuario(codigo, username, creacionCuenta, pais, foto, contrasena));
+ 	                Usuario usuario = new Usuario(codigo, username, creacionCuenta, pais, foto, contrasena);
+ 	                GestorBD.insertarUsuario(usuario);
  	            }
  	            
  	        }
@@ -46,14 +51,12 @@ public class CargarDatos {
  	        System.out.println("Error al leer el archivo: " + e.getMessage());
  	    }
 
- 	    return usuarios;
     	
     }
     
 	
-	public static ArrayList<Producto> cargarProductos() {
+	public static void cargarProductos() {
 		String rutaArchivo = "resources/data/productos.csv";
-	    ArrayList<Producto> productos = new ArrayList<>();
 
 	    try {
 	        FileInputStream fis = new FileInputStream(rutaArchivo);
@@ -70,7 +73,9 @@ public class CargarDatos {
 	                int cantidad = Integer.parseInt(partes[3].trim());
 	                int categoria = Integer.parseInt(partes[4].trim());
 
-	                productos.add(new Producto(id, nombre, precio, cantidad, categoria));
+	                
+	                Producto producto = new Producto(id, nombre, precio, cantidad, categoria);
+	                GestorBD.insertarProducto( producto);
 	            }
 	        }
 
@@ -79,12 +84,9 @@ public class CargarDatos {
 	        System.out.println("Error al leer el archivo: " + e.getMessage());
 	    }
 
-	    return productos;
 	}
 	
-	protected int idDepartamento;
-	protected String nombreDepartamento;
-	int NSSJefe;
+	
 	
 	
 	public static ArrayList<Departamento> cargarDepartamentos() {
@@ -104,7 +106,9 @@ public class CargarDatos {
 	                String nombre = partes[1].trim();
 	                int NSSJefe = Integer.parseInt(partes[2].trim());
 
-	                departamentos.add(new Departamento(id, nombre, NSSJefe));
+	                Departamento departamento = new Departamento(id, nombre, NSSJefe);
+	                GestorBD.insertarDepartamento(departamento);
+
 	            }
 	        }
 
@@ -115,15 +119,10 @@ public class CargarDatos {
 
 	    return departamentos;
 	}
-	protected int codProveedor;
-	protected String nombreProveedor;
-	protected int codPostal;
-	protected String contrasena;
+
 	
-	
-	public static ArrayList<Proveedor> cargarProveedores() {
+	public static void cargarProveedores() {
 		String rutaArchivo = "resources/data/proveedores.csv";
-	    ArrayList<Proveedor> proveedores = new ArrayList<>();
 
 	    try {
 	        FileInputStream fis = new FileInputStream(rutaArchivo);
@@ -139,7 +138,10 @@ public class CargarDatos {
 	                int codP = Integer.parseInt(partes[2].trim());
 	                String contraseña = partes[3].trim();
 
-	                proveedores.add(new Proveedor(cod, nombre, codP, contraseña));
+	                Proveedor proveedor = new Proveedor(cod, nombre, codP, contraseña);
+	                GestorBD.insertarProveedor(proveedor);
+
+	                
 	            }
 	        }
 
@@ -148,7 +150,6 @@ public class CargarDatos {
 	        System.out.println("Error al leer el archivo: " + e.getMessage());
 	    }
 
-	    return proveedores;
 	}
 	
 	

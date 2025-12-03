@@ -16,6 +16,9 @@ public class Producto {
 		this.codSeccion = codSeccion;
 		this.codProveedor = codProveedor;
 	}
+	public Producto() {
+		
+	}
 	public int getIdProd() {
 		return idProd;
 	}

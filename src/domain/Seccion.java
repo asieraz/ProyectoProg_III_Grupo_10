@@ -10,6 +10,9 @@ public class Seccion {
 		this.codSeccion = codSeccion;
 		this.nombreSeccion = nombreSeccion;
 	}
+	public Seccion() {
+		
+	}
 	public int getCodSeccion() {
 		return codSeccion;
 	}

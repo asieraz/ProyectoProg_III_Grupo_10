@@ -17,6 +17,9 @@ public class Proveedor {
 		this.contrasena = contrasena;
 	}
 
+	public Proveedor() {
+		
+	}
 
 	public int getCodProveedor() {
 		return codProveedor;

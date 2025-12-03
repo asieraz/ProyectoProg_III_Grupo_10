@@ -1,10 +1,9 @@
 package gui;
 
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Color;
 import java.awt.Font;
-
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -15,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-
+import BD.GestorBD;
 import domain.Producto;
 
 public class VentanaProductos extends JFrame {
@@ -75,11 +74,15 @@ public class VentanaProductos extends JFrame {
 	
 
 	public static void main(String[] args) {
-		ArrayList<Producto> productos = BD.CargarDatos.cargarProductos();
-		SwingUtilities.invokeLater(() -> {
-        	VentanaProductos ventana = new VentanaProductos(productos);
-            ventana.setVisible(true);
-        });
+		
+                
+        ArrayList<Producto> productos = GestorBD.obtenerProductos();
+  		SwingUtilities.invokeLater(() -> {
+        VentanaProductos ventana = new VentanaProductos(productos);
+           ventana.setVisible(true);
+           });
+
+        
 	}
 		
 

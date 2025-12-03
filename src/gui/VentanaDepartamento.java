@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import BD.GestorBD;
 import domain.Departamento;
 
 public class VentanaDepartamento extends JFrame {
@@ -71,7 +72,7 @@ public class VentanaDepartamento extends JFrame {
 	
 
 	public static void main(String[] args) {
-		ArrayList<Departamento> departamentos = BD.CargarDatos.cargarDepartamentos();
+		ArrayList<Departamento> departamentos = GestorBD.obtenerDepartamentos();
 		SwingUtilities.invokeLater(() -> {
 			VentanaDepartamento ventana = new VentanaDepartamento(departamentos);
             ventana.setVisible(true);
