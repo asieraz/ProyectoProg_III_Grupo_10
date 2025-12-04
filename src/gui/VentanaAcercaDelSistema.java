@@ -9,7 +9,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class VentanaAcercaDelSistema extends JDialog {
 
-    private Thread hiloReloj;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Thread hiloReloj;
 
     public VentanaAcercaDelSistema() {
         super((Frame) null, "Acerca del Sistema", true);

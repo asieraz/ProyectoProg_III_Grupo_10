@@ -29,13 +29,13 @@ public class Main {
     	
     	GestorBD gestorBD = new GestorBD();
 		
-		GestorBD.crearBBDD();
+		//GestorBD.crearBBDD();
 		
-		CargarDatos.cargar();
+		//CargarDatos.cargar();
 						
         SwingUtilities.invokeLater(() -> new VentanaCarga());
 		
-		gestorBD.borrarBBDD();
+		//gestorBD.borrarBBDD();
     	
         
 //    	try {
