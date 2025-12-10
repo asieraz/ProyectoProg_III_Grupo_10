@@ -35,17 +35,26 @@ public class Main {
         DataBackupService backupService = new DataBackupService();
         backupService.backupAsync("Inicio del programa");
    
-    	cargarDatosCSV();
-        System.out.println(mapa);
+    	//cargarDatosCSV();
+        //System.out.println(mapa);
     	
-    	
-    	GestorBD gestorBD = new GestorBD();
+        // Cargar parámetros y driver
+        GestorBD gestor = new GestorBD();
+
+        
+        File dbFile = new File("resources/db/nueva.db");
+
+        if (!dbFile.exists()) {
+            GestorBD.crearBBDD();  
+            CargarDatos.cargar();  // Si quieres insertar datos iniciales
+        }
 		
-		//GestorBD.crearBBDD();
-		
-		//CargarDatos.cargar();
+        // Prueba de funcionamiento
+//        System.out.println("Usuarios en la BD:");
+//        GestorBD.obtenerUsuarios();
 						
         SwingUtilities.invokeLater(() -> new VentanaCarga());
+        System.out.println("Aplicación iniciada correctamente.");
 		
 		//gestorBD.borrarBBDD();
     	

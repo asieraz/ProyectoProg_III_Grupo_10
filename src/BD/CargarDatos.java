@@ -32,7 +32,8 @@ public class CargarDatos {
  	        String linea;
  	        while ((linea = br.readLine()) != null) {
  	            String[] partes = linea.split(",");
- 	            if (partes.length == 5) {
+ 	            // corrección 5 -> 6 para no romper la carga
+ 	            if (partes.length == 6) {
  	                int codigo = Integer.parseInt(partes[0].trim());
  	                String username = partes[1].trim();
  	                LocalDate creacionCuenta = LocalDate.parse(partes[2].trim());
@@ -132,7 +133,8 @@ public class CargarDatos {
 	        String linea;
 	        while ((linea = br.readLine()) != null) {
 	            String[] partes = linea.split(",");
-	            if (partes.length == 3) {
+	         // corrección 3 -> 4 para no romper la carga
+	            if (partes.length == 4) {
 	                int cod = Integer.parseInt(partes[0].trim());
 	                String nombre = partes[1].trim();
 	                int codP = Integer.parseInt(partes[2].trim());
