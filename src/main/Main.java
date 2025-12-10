@@ -14,14 +14,26 @@ import java.util.Scanner;
 import BD.CargarDatos;
 import BD.GestorBD;
 import gui.VentanaCarga; 
+import BD.ConfigManager;
+import domain.DataBackupService;
 
 public class Main {
+	
+	
 	
 	protected static HashMap<String, String> mapa = new HashMap<>();
 
     public static void main(String[] args) {
     	
     	System.out.println("Lanzando...");
+    	
+    	// Configuración
+        ConfigManager config = new ConfigManager();
+        System.out.println("ConfigManager cargado.");
+
+        // Backup en segundo plano
+        DataBackupService backupService = new DataBackupService();
+        backupService.backupAsync("Inicio del programa");
    
     	cargarDatosCSV();
         System.out.println(mapa);
