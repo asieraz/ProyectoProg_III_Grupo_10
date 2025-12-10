@@ -283,7 +283,7 @@ public class VentanaInicio extends JFrame{
 					if(mapa.containsKey(Correo) && mapa.get(Correo).equals(contra)) {
 						JOptionPane.showMessageDialog(null, "Has iniciado sesión correctamente como usuario");
 						SwingUtilities.invokeLater(VentanaMenuPrincipal::new);
-						//dispose();
+						dispose();
 						
 						//Ventana pruba hasta que creemos la principal
 					

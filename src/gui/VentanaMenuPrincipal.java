@@ -6,6 +6,7 @@ import domain.Categoria;
 import domain.Departamento;
 import domain.Producto;
 import domain.Proveedor;
+import domain.Usuario;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -145,8 +146,23 @@ public class VentanaMenuPrincipal extends JFrame{
         });
         
         btnUsuarios.addActionListener(e -> {
-        	new VentanaTablaUsuarios(null).setVisible(true);
-        	dispose();
+        	ArrayList<Usuario> usuarios = GestorBD.obtenerUsuarios();
+        	if (usuarios != null && !usuarios.isEmpty()) {
+               
+                Usuario u = usuarios.get(0);
+
+                // Hay que pasar el usuario a un String[] por el formato en VentanaTablaUsuario
+                String[] fila = {
+                    u.getUsername(),                   
+                    "",                                  
+                    "",                                  
+                    u.getPais(),                        
+                    u.getContrasena()                    
+                };
+
+                new VentanaTablaUsuarios(fila).setVisible(true);
+                dispose();
+            }
 
         });
         
@@ -159,17 +175,7 @@ public class VentanaMenuPrincipal extends JFrame{
         
         
         btnProveedores.addActionListener(e -> {
-        	//ArrayList<Proveedor> proveedores = BD.CargarDatos.cargarProveedores();
-        	ArrayList<Proveedor> proveedores = new ArrayList<>();
-            // Ejemplo de datos
-            proveedores.add(new Proveedor(1, "Álvaro Ma.", 28001, "123498fg"));
-            proveedores.add(new Proveedor(2, "Peter Mu.", 28002, "abcd27"));
-            proveedores.add(new Proveedor(3, "Lucas Landa", 28002, "QWERT87"));
-            proveedores.add(new Proveedor(4, "Luis O.", 28001, "abcdefghijk"));
-            proveedores.add(new Proveedor(5, "Alberto D.", 28002, "abcdefg"));
-            proveedores.add(new Proveedor(6, "Ana Perez", 28003, "abcd3477"));
-            proveedores.add(new Proveedor(7, "Ana María", 28003, "abcd1235"));
-            proveedores.add(new Proveedor(8, "Lucas Prieto", 28004, "abddc33"));
+        	ArrayList<Proveedor> proveedores = GestorBD.obtenerProveedores();
     		new VentanaProveedores(proveedores).setVisible(true);       
         	dispose();
         });
