@@ -149,7 +149,12 @@ public class VentanaTablaUsuarios extends JFrame {
 
 	     // Ocultar contraseñas
 	        tabla.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
-	            @Override
+	            /**
+				 * 
+				 */
+				private static final long serialVersionUID = 3575793471476122443L;
+
+				@Override
 	            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 	                // Máscara para la contraseña
 	                String maskedValue = (value != null) ? "*".repeat(value.toString().length()) : "";

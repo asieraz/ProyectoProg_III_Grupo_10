@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.SwingUtilities; 
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 import BD.CargarDatos;
 import BD.GestorBD;
 import gui.VentanaCarga; 
-import BD.ConfigManager;
+//import BD.ConfigManager;
 import domain.DataBackupService;
 
 public class Main {
@@ -27,9 +28,9 @@ public class Main {
     	
     	System.out.println("Lanzando...");
     	
-    	// Configuración
-        ConfigManager config = new ConfigManager();
-        System.out.println("ConfigManager cargado.");
+    	// Configuración --> Salta IOException
+//        new ConfigManager();
+//        System.out.println("ConfigManager cargado.");
 
         // Backup en segundo plano
         DataBackupService backupService = new DataBackupService();
@@ -39,7 +40,7 @@ public class Main {
         //System.out.println(mapa);
     	
         // Cargar parámetros y driver
-        GestorBD gestor = new GestorBD();
+        new GestorBD();
 
         
         File dbFile = new File("resources/db/nueva.db");
@@ -58,13 +59,6 @@ public class Main {
 		
 		//gestorBD.borrarBBDD();
     	
-        
-//    	try {
-//            UIManager.setLookAndFeel(new FlatMacLightLaf());
-//        } catch (UnsupportedLookAndFeelException e) {
-//            System.err.println("ERROR: No se ha encontrado la librería de Look-and-Feel FlatLAF. Utilizando el LAF " +
-//                    "por defecto.");
-//        }
     }
     
     public static void cargarDatosCSV(){

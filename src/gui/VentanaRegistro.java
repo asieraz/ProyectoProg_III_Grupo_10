@@ -35,7 +35,12 @@ public class VentanaRegistro extends JFrame{
 		
 		// Panel para la imagen de fondo
         JPanel mainPanel = new JPanel() {
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 4160672463747584992L;
+
+			@Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 ImageIcon fondo = new ImageIcon("resources/img/fondo.jpg"); // Ruta de tu imagen

@@ -93,7 +93,12 @@ public class VentanaInicio extends JFrame{
 		
 		 // Panel para la imagen de fondo
         JPanel mainPanel = new JPanel() {
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 510063825362016528L;
+
+			@Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 

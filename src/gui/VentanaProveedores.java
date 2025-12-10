@@ -99,7 +99,12 @@ public class VentanaProveedores extends JFrame {
 
         // Ocultar contraseña
         tabla.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -647050569037440376L;
+
+			@Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                            boolean hasFocus, int row, int column) {
                 JLabel label = new JLabel("******");
@@ -120,7 +125,12 @@ public class VentanaProveedores extends JFrame {
 
         // Resaltado básico para todas las columnas
         tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -6239716601849804096L;
+
+			@Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                            boolean hasFocus, int row, int column) {
                 Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
