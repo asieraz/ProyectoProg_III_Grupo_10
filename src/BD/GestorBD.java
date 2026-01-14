@@ -24,24 +24,33 @@ public class GestorBD {
 	protected static String DATABASE_FILE;
 	protected static String CONNECTION_STRING;
 	
+	 static {
+	        try {
+	            Properties connectionProperties = new Properties();
+	            connectionProperties.load(new FileReader("resources/parametros.properties"));
+
+	            DRIVER_NAME = connectionProperties.getProperty("DRIVER_NAME");
+	            DATABASE_FILE = connectionProperties.getProperty("DATABASE_FILE");
+	            CONNECTION_STRING = connectionProperties.getProperty("CONNECTION_STRING") + DATABASE_FILE;
+
+	            // Cargar el driver
+	            Class.forName(DRIVER_NAME);
+
+	            System.out.println("* Driver cargado correctamente: " + CONNECTION_STRING);
+
+	        } catch (Exception ex) {
+	            System.err.println("* Error al cargar el driver de BBDD: " + ex.getMessage());
+	            ex.printStackTrace();
+	        }
+	    }
+	
 	public GestorBD() {	
 		
-		try {
-			Properties connectionProperties = new Properties();
-			connectionProperties.load(new FileReader("resources/parametros.properties"));
-			
-			DRIVER_NAME = connectionProperties.getProperty("DRIVER_NAME");
-			DATABASE_FILE = connectionProperties.getProperty("DATABASE_FILE");
-			CONNECTION_STRING = connectionProperties.getProperty("CONNECTION_STRING") + DATABASE_FILE;
-			
-			//Cargar el diver SQLite
-			Class.forName(DRIVER_NAME);
-		} catch (Exception ex) {
-			System.err.format("\n* Error al cargar el driver de BBDD: %s", ex.getMessage());
-			ex.printStackTrace();
-		}
 	}
-
+		
+	
+		
+		
 		public static void crearBBDD() {
 
 			try (Connection con = DriverManager.getConnection(CONNECTION_STRING);
@@ -670,5 +679,5 @@ public class GestorBD {
 
 		    return p;
 		}
-
+	
 }
