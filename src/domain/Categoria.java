@@ -1,47 +1,51 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import domain.Producto;
+
+@SuppressWarnings("unused")
 public class Categoria {
-
     private String nombre;
-    private List<Categoria> subcategorias = new ArrayList<>();
-    private List<Producto> productos = new ArrayList<>();
+    private ArrayList<Categoria> subCategorias = new ArrayList<>();
+    private ArrayList<Producto> productos = new ArrayList<>(); // <-- lista de productos
 
     public Categoria(String nombre) {
         this.nombre = nombre;
     }
 
-    public void addSubcategoria(Categoria c) {
-        subcategorias.add(c);
+    // Añadir subcategoría
+    public void agregarSubCategoria(Categoria c) {
+        subCategorias.add(c);
     }
 
-    public void addProducto(Producto p) {
+    // Añadir producto
+    public void agregarProducto(Producto p) {
         productos.add(p);
+    }
+
+    // Obtener subcategorías
+    public ArrayList<Categoria> getSubCategorias() {
+        return subCategorias;
+    }
+
+    // Obtener productos
+    public ArrayList<Producto> getProductos() {
+        return productos;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public List<Categoria> getSubcategorias() {
-        return subcategorias;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    // -----------------------------------------------------
-    // MÉTODO RECURSIVO: cuenta categorías dentro del árbol
-    // -----------------------------------------------------
-    public int contarCategoriasRec() {
-        int total = 1; // cuenta esta categoría
-
-        for (Categoria sub : subcategorias) {
-            total += sub.contarCategoriasRec(); // llamada recursiva
+    // Método recursivo para mostrar la categoría y productos
+    public void mostrarRecursivamente(int nivel) {
+        System.out.println(" ".repeat(nivel * 2) + nombre);
+        for (Producto p : productos) {
+            System.out.println(" ".repeat(nivel * 2 + 2) + p.getNombreProd());
         }
-        return total;
+        for (Categoria sub : subCategorias) {
+            sub.mostrarRecursivamente(nivel + 1);
+        }
     }
 }

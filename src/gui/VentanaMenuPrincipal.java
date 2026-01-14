@@ -129,12 +129,26 @@ public class VentanaMenuPrincipal extends JFrame{
         btnProveedores.setBorder(BorderFactory.createCompoundBorder(
         		BorderFactory.createLineBorder(COLOR_PRIMARIO, 2),
                 new EmptyBorder(10, 10, 10, 10)
+                
         ));
+        
+        JButton btnCategotias = new JButton("Categorías");
+        btnCategotias.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        btnCategotias.setBackground(COLOR_BOTON);
+        btnCategotias.setForeground(COLOR_TEXTO_BOTON);
+        btnCategotias.setFocusPainted(false);
+        btnCategotias.setBorder(BorderFactory.createCompoundBorder(
+        		BorderFactory.createLineBorder(COLOR_PRIMARIO, 2),
+                new EmptyBorder(10, 10, 10, 10)
+                
+                
+              ));
         
         panel.add(btnProductos);
         panel.add(btnUsuarios);
         panel.add(btnDepartamento);
         panel.add(btnProveedores);
+        panel.add(btnCategotias);
 
         add(panel, BorderLayout.CENTER);
         
@@ -143,6 +157,12 @@ public class VentanaMenuPrincipal extends JFrame{
         	ArrayList<Producto> productos = GestorBD.obtenerProductos();
         	new VentanaProductos(productos).setVisible(true);
         	dispose();
+        });
+        
+        btnCategotias.addActionListener(e -> {
+            Categoria raiz = new Categoria("Todas las categorías");
+            new VentanaCategorias(raiz).setVisible(true);
+            dispose();
         });
         
         btnUsuarios.addActionListener(e -> {

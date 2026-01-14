@@ -101,21 +101,21 @@ public class VentanaAcercaDelSistema extends JDialog {
         Categoria raiz = new Categoria("Supermercado");
 
         Categoria lacteos = new Categoria("Lácteos");
-        lacteos.addProducto(new Producto(1, "Leche", 1.5f, 1, 100));
-        lacteos.addProducto(new Producto(2, "Queso", 2.5f, 1, 101));
+        lacteos.agregarProducto(new Producto(1, "Leche", 1.5f, 1, 100));
+        lacteos.agregarProducto(new Producto(2, "Queso", 2.5f, 1, 101));
 
         Categoria bebidas = new Categoria("Bebidas");
-        bebidas.addProducto(new Producto(3, "Refresco", 1.0f, 2, 102));
-        bebidas.addProducto(new Producto(4, "Agua", 0.8f, 2, 103));
+        bebidas.agregarProducto(new Producto(3, "Refresco", 1.0f, 2, 102));
+        bebidas.agregarProducto(new Producto(4, "Agua", 0.8f, 2, 103));
 
         Categoria congelados = new Categoria("Congelados");
         Categoria helados = new Categoria("Helados");
-        helados.addProducto(new Producto(5, "Vainilla", 1.2f, 3, 104));
-        congelados.addSubcategoria(helados);
+        helados.agregarProducto(new Producto(5, "Vainilla", 1.2f, 3, 104));
+        congelados.agregarSubCategoria(helados);
 
-        raiz.addSubcategoria(lacteos);
-        raiz.addSubcategoria(bebidas);
-        raiz.addSubcategoria(congelados);
+        raiz.agregarSubCategoria(lacteos);
+        raiz.agregarSubCategoria(bebidas);
+        raiz.agregarSubCategoria(congelados);
 
         return raiz;
     }
@@ -132,7 +132,7 @@ public class VentanaAcercaDelSistema extends JDialog {
             sb.append("* ").append(p.getNombreProd()).append(" ($").append(p.getPrecio()).append(")\n");
         }
 
-        for (Categoria sub : categoria.getSubcategorias()) {
+        for (Categoria sub : categoria.getSubCategorias()) {
             sb.append(mostrarCategoriasRec(sub, nivel + 1));
         }
 
