@@ -1,9 +1,13 @@
 package BD;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.junit.Test;
 import org.junit.jupiter.api.*;
 
 import domain.Departamento;
@@ -165,6 +169,17 @@ class TestGestorBD {
         assertNull(eliminado);
     }
 
+    @Test
+    public void testContarEmpleadosRecursivo() {
+        List<Empleado> lista = new ArrayList<>();
+        lista.add(new Empleado(123456789, "Juan", "9876", 1, 2));
+        lista.add(new Empleado(40, "Luis", "6666", 2, 1));
+
+        int total = Empleado.contarEmpleadosRecursivo(lista, 0);
+
+        assertEquals(2, total);
+    }
+    
     // TEST PRODUCTO
     @Test
     @Order(10)
