@@ -77,7 +77,7 @@ public class VentanaTablaUsuarios extends JFrame {
 
 
 		  DefaultTableModel model = new DefaultTableModel(colubnas, 0);
-	        cargarDatosCSV("resources/data/personas.csv", model);
+	        cargarDatosCSV(model);
 
 	        if (datosUser != null && datosUser.length == colubnas.length) {
 	            model.addRow(datosUser);
@@ -257,33 +257,20 @@ public class VentanaTablaUsuarios extends JFrame {
 
 
 
-	public void cargarDatosCSV(String n, DefaultTableModel datos){
-    	File f = new File(n);
-    	try {
-			Scanner sc = new Scanner(f);
-			while(sc.hasNextLine()) {
+	public void cargarDatosCSV(DefaultTableModel datos) {
+	    try (Scanner sc = new Scanner(getClass().getResourceAsStream("/data/personas.csv"))) {
+	        while (sc.hasNextLine()) {
+	            String linea = sc.nextLine();
+	            String[] campos = linea.split(";");
+	            datos.addRow(campos);
+	        }
+	        System.out.println("CSV cargado correctamente");
+	    } catch (Exception e) {
+	        System.out.println("CSV personas.csv no encontrado!");
+	        e.printStackTrace();
+	    }
+	}
 
-				String linea = sc.nextLine();
-
-					String[] campos =  linea.split(";");
-
-					datos.addRow(campos);
-
-					HashMap<String,String> mapa = new HashMap<String, String>();
-
-						mapa.put(campos[0], campos[1]  +campos[2] + campos[3] + campos[4]);
-
-
-
-				}			
-			sc.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-    }	
 
 	 public void guardarEnArchivo(DefaultTableModel model) {
 	        try (PrintWriter pw = new PrintWriter(new FileWriter("resources/data/personas.csv",false))) {

@@ -1,6 +1,7 @@
 package BD;
 
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -27,8 +28,12 @@ public class GestorBD {
 	 static {
 	        try {
 	            Properties connectionProperties = new Properties();
-	            connectionProperties.load(new FileReader("resources/parametros.properties"));
-
+	            try (InputStream is = GestorBD.class.getResourceAsStream("/parametros.properties")) {
+	                if (is == null) {
+	                    throw new IOException("No se encontró el archivo de propiedades en el classpath");
+	                }
+	                connectionProperties.load(is);
+	            }
 	            DRIVER_NAME = connectionProperties.getProperty("DRIVER_NAME");
 	            DATABASE_FILE = connectionProperties.getProperty("DATABASE_FILE");
 	            CONNECTION_STRING = connectionProperties.getProperty("CONNECTION_STRING") + DATABASE_FILE;

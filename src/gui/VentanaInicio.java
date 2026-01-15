@@ -12,8 +12,6 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -48,31 +46,19 @@ public class VentanaInicio extends JFrame{
 	
 	
 	//Cargamos los datos para ver luego si esta en la base de tados 
-	public void cargarDatosCSV(){
-    	File f = new File("resources/data/personas.csv");
-    	try {
-			Scanner sc = new Scanner(f);
-			while(sc.hasNextLine()) {
-				String linea = sc.nextLine();
-				String[] campos =  linea.split(";");
-			
-				
-					
-					mapa.put(campos[3], campos[4]);
-			
-				}
-			
-				 	
-			sc.close();
-					
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	
-    }
+	public void cargarDatosCSV() {
+	    try (Scanner sc = new Scanner(getClass().getClassLoader().getResourceAsStream("data/personas.csv"))) {
+
+	        while (sc.hasNextLine()) {
+	            String linea = sc.nextLine();
+	            String[] campos = linea.split(";");
+	            mapa.put(campos[3], campos[4]);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	
 	public  VentanaInicio() {
 	
@@ -99,12 +85,16 @@ public class VentanaInicio extends JFrame{
 			private static final long serialVersionUID = 510063825362016528L;
 
 			@Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-
-                ImageIcon fondo = new ImageIcon("resources/img/fondo.jpg"); // Ruta de tu imagen
-                g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
-            }
+			protected void paintComponent(Graphics g) {
+			    super.paintComponent(g);
+			    java.net.URL url = getClass().getClassLoader().getResource("img/fondo.jpg");
+			    if (url != null) {
+			        ImageIcon fondo = new ImageIcon(url);
+			        g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+			    } else {
+			        System.out.println("No se encontró la imagen de fondo");
+			    }
+			}
         };
         
         mainPanel.setLayout(null);
@@ -160,7 +150,7 @@ public class VentanaInicio extends JFrame{
         mainPanel.add(txt2);
 
 
-        ImageIcon foto1 = new ImageIcon("resources/img/fotover.png");
+        ImageIcon foto1 = new ImageIcon(getClass().getClassLoader().getResource("img/fotnover.png"));
         JButton ocultar = new JButton(foto1);
         ocultar.setBounds(210, 100, 120, 30); // Posición y tamaño del componente
 
@@ -256,14 +246,14 @@ public class VentanaInicio extends JFrame{
 				if(txt2.echoCharIsSet()) {
 					//Con este codigo pasamos de * a lo que ha escrito el usuario para que sepa la contraseña
 					 txt2.setEchoChar((char) 0);
-					 ImageIcon foto1 = new ImageIcon("resources/img/fotnover.png");
+					 ImageIcon foto1 = new ImageIcon(getClass().getClassLoader().getResource("img/fotnover.png"));
 					 ocultar.setIcon(foto1);
 					
 				}else {
 					//Y aqui al reves 
 					txt2.setEchoChar(valor);
 					
-					ImageIcon foto2 = new ImageIcon("resources/img/fotover.png");
+					ImageIcon foto2 = new ImageIcon(getClass().getClassLoader().getResource("img/fotover.png"));
 					ocultar.setIcon(foto2);
 				}
 

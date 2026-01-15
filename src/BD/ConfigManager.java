@@ -1,12 +1,12 @@
 package BD;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigManager {
 
-    private static final String CONFIG_PATH = "config.properties";
+    private static final String CONFIG_PATH = "/config.properties"; // Nota la barra inicial
     private final Properties properties = new Properties();
 
     public ConfigManager() {
@@ -14,8 +14,12 @@ public class ConfigManager {
     }
 
     private void load() {
-        try (FileInputStream fis = new FileInputStream(CONFIG_PATH)) {
-            properties.load(fis);
+        try (InputStream is = ConfigManager.class.getResourceAsStream(CONFIG_PATH)) {
+            if (is == null) {
+                System.err.println("No se encontró el archivo de configuración: " + CONFIG_PATH);
+                return;
+            }
+            properties.load(is);
             System.out.println("Configuración cargada desde: " + CONFIG_PATH);
         } catch (IOException e) {
             System.err.println("Error al cargar el archivo de configuración: " + e.getMessage());

@@ -74,7 +74,11 @@ public class VentanaMenuPrincipal extends JFrame{
         setJMenuBar(menuBar);
         
         // Título principal con el logo de nuestro super
-        JLabel titulo = new JLabel("SuperMarket", new ImageIcon("resources/img/logoSuper.png"), SwingConstants.CENTER);
+        JLabel titulo = new JLabel(
+        	    "SuperMarket",
+        	    new ImageIcon(VentanaMenuPrincipal.class.getClassLoader().getResource("img/logoSuper.png")),
+        	    SwingConstants.CENTER
+        	);
         titulo.setFont(new Font("Segoe UI", Font.BOLD, 28));
         titulo.setBorder(new EmptyBorder(20, 0, 20, 0));
         // Para poner el titulo debajo del logo

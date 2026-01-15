@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -23,29 +21,20 @@ public class VentanaCarga extends JFrame {
     
     
     public static void cargarDatosCSV(){
-    	File f = new File("resources/data/personas.csv");
-    	try {
-			Scanner sc = new Scanner(f);
-			while(sc.hasNextLine()) {
-				String linea = sc.nextLine();
-				String[] campos =  linea.split(";");
-			
-				
-					
-					mapa.put(campos[3], campos[4]+ "\n");
-					
-					
-					
-				}
-			
-				 	
-			sc.close();
-					
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	try (Scanner sc = new Scanner(
+    	        VentanaCarga.class.getClassLoader().getResourceAsStream("data/personas.csv"))) {
+    	    while(sc.hasNextLine()) {
+    	        String linea = sc.nextLine();
+    	        String[] campos = linea.split(";");
+    	        mapa.put(campos[3], campos[4] + "\n");
+    	    }
+    	    
+    	    sc.close();
+    	    
+    	    } catch (Exception e) {
+    	    e.printStackTrace();
+    	}
+
     	
     	
     }
@@ -60,7 +49,9 @@ public class VentanaCarga extends JFrame {
        
 
         
-        ImageIcon icon = new ImageIcon("resources/img/logoSuper.png");
+        ImageIcon icon = new ImageIcon(
+        	    VentanaCarga.class.getClassLoader().getResource("img/logoSuper.png")
+        	);
         JLabel jImagen = new JLabel(icon, JLabel.CENTER);
         add(jImagen, BorderLayout.NORTH);
 

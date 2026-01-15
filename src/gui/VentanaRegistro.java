@@ -43,7 +43,7 @@ public class VentanaRegistro extends JFrame{
 			@Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon fondo = new ImageIcon("resources/img/fondo.jpg"); // Ruta de tu imagen
+                ImageIcon fondo = new ImageIcon(VentanaRegistro.class.getClassLoader().getResource("img/fondo.jpg"));
                 g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -265,14 +265,14 @@ public class VentanaRegistro extends JFrame{
 						//Con este codigo pasamos de * a lo que ha escrito el usuario para que sepa la contraseña
 						 txt2.setEchoChar((char)0);
 		
-						 ImageIcon foto1 = new ImageIcon("resources/img/fotnover.png");
+						 ImageIcon foto1 = new ImageIcon(VentanaRegistro.class.getClassLoader().getResource("img/fotover.png"));
 						 ocultar.setIcon(foto1);
 
 					}else {
 						//Y aqui al reves 
 						txt2.setEchoChar(valor);
 			
-						ImageIcon foto2 = new ImageIcon("resources/img/fotover.png");
+						ImageIcon foto2 = new ImageIcon(VentanaRegistro.class.getClassLoader().getResource("img/fotnover.png"));
 						ocultar.setIcon(foto2);
 					}
 

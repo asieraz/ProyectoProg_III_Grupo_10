@@ -1,93 +1,91 @@
 package main;
 
-import javax.swing.SwingUtilities; 
-
-
+import javax.swing.SwingUtilities;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//import javax.swing.UIManager;
-//import javax.swing.UnsupportedLookAndFeelException;
-//import com.formdev.flatlaf.themes.FlatMacLightLaf;
-
 import BD.CargarDatos;
 import BD.GestorBD;
-import gui.VentanaCarga; 
-//import BD.ConfigManager;
+import gui.VentanaCarga;
 import domain.DataBackupService;
 
 public class Main {
-	
-	
-	
-	protected static HashMap<String, String> mapa = new HashMap<>();
+
+    protected static HashMap<String, String> mapa = new HashMap<>();
 
     public static void main(String[] args) {
-    	
-    	System.out.println("Lanzando...");
-    	
-    	// Configuración --> Salta IOException
-//        new ConfigManager();
-//        System.out.println("ConfigManager cargado.");
+
+        System.out.println("Lanzando...");
 
         // Backup en segundo plano
         DataBackupService backupService = new DataBackupService();
         backupService.backupAsync("Inicio del programa");
-   
-    	//cargarDatosCSV();
-        //System.out.println(mapa);
-    	
-        // Cargar parámetros y driver
-        new GestorBD();
+
+        // Crear carpeta de la DB si no existe
+        File carpetaDB = new File("resources/db");
+        if (!carpetaDB.exists()) {
+            carpetaDB.mkdirs();
+        }
 
         
+        // Crear BD si no existe
         File dbFile = new File("resources/db/nueva.db");
-
         if (!dbFile.exists()) {
-            GestorBD.crearBBDD();  
-            CargarDatos.cargar();  // Si quieres insertar datos iniciales
+            GestorBD.crearBBDD();
+            CargarDatos.cargar(); // Insertar datos iniciales
         }
-		
-        // Prueba de funcionamiento
-//        System.out.println("Usuarios en la BD:");
-//        GestorBD.obtenerUsuarios();
-						
+
+        
+        // Cargar CSV externo de forma segura
+        cargarDatosCSV();
+
+        // Lanzar GUI
         SwingUtilities.invokeLater(() -> new VentanaCarga());
+
         System.out.println("Aplicación iniciada correctamente.");
-		
-		//gestorBD.borrarBBDD();
-    	
     }
+
     
-    public static void cargarDatosCSV(){
-    	File f = new File("resources/data/personas.csv");
-    	try {
-			Scanner sc = new Scanner(f);
-			while(sc.hasNextLine()) {
-				String linea = sc.nextLine();
-				String[] campos =  linea.split(";");
-			
-				
-					
-					mapa.put(campos[3], campos[4]+ "\n");
-					
-					
-					
-				}
-			
-				 	
-			sc.close();
-					
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	
+    public static void cargarDatosCSV() {
+        // Intentar leer desde el archivo externo primero
+        File archivoExterno = new File("resources/data/personas.csv");
+
+        try (Scanner sc = archivoExterno.exists()
+                ? new Scanner(archivoExterno, StandardCharsets.UTF_8)
+                : getScannerDesdeJar("/data/personas.csv")) {
+
+            if (sc == null) {
+                System.out.println("Archivo personas.csv no encontrado!");
+                return;
+            }
+
+            
+            
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String[] campos = linea.split(";");
+                if (campos.length >= 5) {
+                    mapa.put(campos[3], campos[4] + "\n");
+                }
+            }
+
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
+    
+ 
+    private static Scanner getScannerDesdeJar(String rutaRecurso) {
+        InputStream is = Main.class.getResourceAsStream(rutaRecurso);
+        if (is == null) return null;
+        return new Scanner(is, StandardCharsets.UTF_8);
+    }
 }
+
