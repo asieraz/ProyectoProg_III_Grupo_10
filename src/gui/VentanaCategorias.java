@@ -156,6 +156,18 @@ public class VentanaCategorias extends JFrame {
                 JOptionPane.showMessageDialog(this, sb.length() > 0 ? sb.toString() : "No hay productos.");
             }
         });
+        
+        JButton btnVolver = new JButton("Volver al Menú Principal");
+        btnVolver.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        btnVolver.addActionListener(e -> {
+            VentanaMenuPrincipal menu = new VentanaMenuPrincipal();
+            menu.setVisible(true);
+            dispose();
+        });
+        
+        add(btnVolver, BorderLayout.NORTH);
+
     }
 
     // Crear nodo recursivamente desde Categoria
