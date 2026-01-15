@@ -45,7 +45,41 @@ public class VentanaCategorias extends JFrame {
         JButton btnAgregarSub = new JButton("Agregar subcategoría");
         JButton btnEliminar = new JButton("Eliminar categoría");
         JButton btnMostrarProd = new JButton("Mostrar productos");
+        
+     // ===== BARRA DE MENÚ =====
+        JMenuBar menuBar = new JMenuBar();
 
+        JMenu menuArchivo = new JMenu("Archivo");
+
+        JMenuItem volverMenu = new JMenuItem("Volver al menú principal");
+        JMenuItem salir = new JMenuItem("Salir");
+
+        menuArchivo.add(volverMenu);
+        menuArchivo.addSeparator();
+        menuArchivo.add(salir);
+
+        menuBar.add(menuArchivo);
+        setJMenuBar(menuBar);
+
+        volverMenu.addActionListener(e -> {
+            new VentanaMenuPrincipal().setVisible(true);
+            dispose(); // cierra VentanaCategorias
+        });
+
+        salir.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Desea cerrar la aplicación?",
+                    "Confirmar salida",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        });
+
+        
         panelBotones.add(btnAgregar);
         panelBotones.add(btnAgregarSub);
         panelBotones.add(btnEliminar);
