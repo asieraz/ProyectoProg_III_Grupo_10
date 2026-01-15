@@ -1,6 +1,9 @@
 package domain;
 
+import java.util.List;
 import java.util.Objects;
+
+
 
 public class Empleado {
 	protected int Nss;
@@ -68,6 +71,15 @@ public class Empleado {
 				&& idDepartamento == other.idDepartamento && Objects.equals(nombreEmpleado, other.nombreEmpleado);
 	}
 	
-	
+	/* 
+	 * Método recursivo que cuenta empleados en una lista
+	 */
+	public static int contarEmpleadosRecursivo(List<Empleado> lista, int indice) {
+	    if (indice == lista.size()) {
+	        return 0;
+	    }
+	    return 1 + contarEmpleadosRecursivo(lista, indice + 1);
+	}
+
 
 }
